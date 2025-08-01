@@ -1,0 +1,40 @@
+openapi: 3.0.0
+info:
+  title: Express Postgres Template
+  description: API documentation for the Express Postgres Template
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+    description: Development server
+paths:
+  /basic/test:
+    get:
+      summary: Basic test endpoint
+      description: Returns a success message and the current database time.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Basic route is working
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Error message

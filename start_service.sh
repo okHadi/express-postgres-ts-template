@@ -28,13 +28,15 @@ if [ "$1" == "--full" ]; then
     echo "Express App: http://localhost:3000"
     echo "PostgreSQL Database: Running internally as 'postgres' service"
     echo "pgAdmin UI: http://localhost:5050"
+    echo "Swagger Docs: http://localhost:8080" 
 else
-    echo "Starting/rebuilding Express app only..."
-    # Corrected service name from 'express-app' to 'app'
-    docker compose -f tests/docker-compose.yml up -d --no-deps --build app
+    echo "Starting/rebuilding Express app and Swagger docs only..."
+    docker compose -f tests/docker-compose.yml up -d --no-deps --build app docs
 
-    echo "Express app is up and running!"
+    echo "Express app and Swagger docs are up and running!"
     echo "Express App: http://localhost:3000"
+    echo "Swagger Docs: http://localhost:8080"
+    echo "pgAdmin UI: http://localhost:5050"
 
-    echo "To perform a full restart of all services (Express, Postgres, pgAdmin), run this script with the --full flag."
+    echo "To perform a full restart of all services (Express, Postgres, pgAdmin, Swagger Docs), run this script with the --full flag."
 fi

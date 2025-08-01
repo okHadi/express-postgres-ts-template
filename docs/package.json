@@ -1,0 +1,14 @@
+{
+  "name": "docs-server",
+  "version": "1.0.0",
+  "description": "Server for swagger docs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "swagger-ui-express": "^4.1.6",
+    "yamljs": "^0.3.0"
+  }
+}

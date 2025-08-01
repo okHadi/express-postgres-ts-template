@@ -42,6 +42,14 @@ services:
     volumes:
       - pgadmin_data:/var/lib/pgadmin # Persist pgAdmin configuration and server definitions
 
+  docs:
+    build:
+      context: ../
+      dockerfile: docs/Dockerfile
+    container_name: swagger-docs
+    ports:
+      - "8080:8080"
+
 volumes:
   pgdata:
   pgadmin_data:
