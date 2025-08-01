@@ -1,0 +1,39 @@
+{
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "morgan": "^1.10.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.1.0"
+  },
+  "name": "express-postgres-ts-template",
+  "version": "1.0.0",
+  "description": "Starter template for a production ready express application.",
+  "main": "src/server.ts",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "nodemon",
+    "prettier": "prettier --write \"src/**/*.ts\"",
+    "prettier:check": "prettier --check \"src/**/*.ts\"",
+    "lint": "eslint --ignore-path .eslintignore \"src/**/*.ts\" --fix",
+    "lint:check": "eslint --ignore-path .eslintignore \"src/**/*.ts\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/okHadi/express-postgres-ts-template.git"
+  },
+  "author": "okHadi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/okHadi/express-postgres-ts-template/issues"
+  },
+  "homepage": "https://github.com/okHadi/express-postgres-ts-template#readme"
+}

@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { basic } from "../controllers/basic.controller";
 
-export const NewsLetterRouter: Router = Router();
+export const BasicRouter: Router = Router();
 
-NewsLetterRouter.post("/basic", basic);
+BasicRouter.post("/basic", basic);
