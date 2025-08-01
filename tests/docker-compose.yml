@@ -1,0 +1,32 @@
+name: express-postgres-ts-template
+services:
+  app:
+    build:
+      context: ../
+      dockerfile: Dockerfile
+    container_name: express_app
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=delivery_db
+      - NODE_ENV=development
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:17
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: delivery_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:
