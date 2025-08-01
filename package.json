@@ -11,10 +11,16 @@
     "tslib": "^2.8.1"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.27.1",
     "@types/express": "^5.0.3",
+    "@types/jest": "^30.0.0",
     "@types/morgan": "^1.9.10",
     "@types/node": "^24.1.0",
     "@types/pg": "^8.15.5",
+    "@types/supertest": "^6.0.2",
+    "jest": "^30.0.5",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.1.8",
     "typescript": "^5.9.2"
   },
   "name": "express-postgres-ts-template",
@@ -26,7 +32,8 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "test:full": "./start_service.sh && jest",
     "build": "tsc",
     "start": "node dist/server.js",
     "dev": "nodemon",
