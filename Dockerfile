@@ -1,9 +1,21 @@
-FROM node:20.11.1
+FROM node:22-alpine AS base
+ENV NODE_ENV=production YARN_VERSION=4.1.1
+RUN corepack enable && corepack prepare yarn@${YARN_VERSION}
+
+FROM base as builder
 WORKDIR /app
-COPY package.json /app
-COPY yarn.lock /app
-RUN yarn install
-COPY . /app
-RUN yarn build
+COPY . .
+ENV LAMBDA=false
+COPY package.json package-lock.json /app/
+RUN npm install 
+RUN npm build
+
+FROM node:22-alpine
+WORKDIR /app
+COPY package.json package-lock.json /app/
+ENV NODE_ENV=production
+COPY --from=builder /app/node_modules /app/node_modules
+COPY --from=builder /app/dist /app/dist
+COPY .env /app/
 EXPOSE 3000
-CMD ["yarn", "start"]
+CMD ["npm", "start"]

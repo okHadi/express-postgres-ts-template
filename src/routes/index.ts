@@ -1,7 +1,7 @@
 import type { Application, Router } from "express";
 import { BasicRouter } from "./basic.route";
 
-const _routes: Array<[string, Router]> = [["/newsletter", BasicRouter]];
+const _routes: Array<[string, Router]> = [["/basic", BasicRouter]];
 
 export const routes = (app: Application): void => {
   _routes.map((route) => {
