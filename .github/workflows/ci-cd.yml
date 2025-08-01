@@ -1,0 +1,39 @@
+name: CI/CD
+
+# Trigger the workflow on every pull request
+on:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install dependencies
+        run: npm install
+
+      - name: Create .env file
+        run: |
+          echo "VAR1=$RANDOM" >> .env
+          echo "VAR2=$RANDOM" >> .env
+      - name: Make script executable
+        run: chmod +x ./start_service.sh
+
+      # Run the integration tests
+      - name: Run tests
+        run: npm run test:full
