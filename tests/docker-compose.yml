@@ -4,7 +4,7 @@ services:
     build:
       context: ../
       dockerfile: Dockerfile
-    container_name: express_app
+    container_name: express-app
     ports:
       - "3000:3000"
     environment:
@@ -12,21 +12,36 @@ services:
       - DB_PORT=5432
       - DB_USER=postgres
       - DB_PASSWORD=postgres
-      - DB_NAME=delivery_db
+      - DB_NAME=postgres
       - NODE_ENV=development
     depends_on:
       - postgres
   postgres:
     image: postgres:17
-    container_name: postgres_db
+    container_name: postgres-db
     restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: delivery_db
+      POSTGRES_DB: postgres
     ports:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_container
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80" # Map host port 5050 to pgAdmin's port 80
+    depends_on:
+      - postgres # Ensure postgres starts before pgAdmin
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin # Persist pgAdmin configuration and server definitions
+
 volumes:
   pgdata:
+  pgadmin_data:

@@ -14,7 +14,8 @@
     "@types/express": "^5.0.3",
     "@types/morgan": "^1.9.10",
     "@types/node": "^24.1.0",
-    "@types/pg": "^8.15.5"
+    "@types/pg": "^8.15.5",
+    "typescript": "^5.9.2"
   },
   "name": "express-postgres-ts-template",
   "version": "1.0.0",
